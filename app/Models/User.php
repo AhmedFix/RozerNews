@@ -34,7 +34,6 @@ class User extends Authenticatable
 
         if ($this->profile_picture) {
             return asset('images/profile/' . $this->profile_picture);
-            // return Storage::url('images/profile/' . $this->profile_picture);
         }
 
         return asset('images/profile/avatar.png');
