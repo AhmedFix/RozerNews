@@ -1,7 +1,7 @@
 <div class="bg-blue-700 px-4 sm:px-6 py-3 flex items-center justify-between shadow h-16 fixed top-0 left-0 right-0 z-50">
     <div class="flex items-center text-white">
         <img class="app-sidebar__logo" src="{{ asset('images/logo.png') }}" alt="Site Logo">
-        <span class="font-semibold text-sm sm:text-xl tracking-tight">SUSTEDU</span>
+        <span class="font-semibold text-sm sm:text-xl tracking-tight">Rozer News</span>
     </div>
     <div class="relative">
         @auth
