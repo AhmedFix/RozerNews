@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StudentResource;
-use App\Models\Student;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UserResources;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -26,9 +27,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
 
-            $student = Auth::user();
-            $data['student'] = new StudentResource($student);
-            $data['token'] = $student->createToken('my-app-token')->plainTextToken;
+            $user = Auth::user();
+            $data['user'] = new UserResource($user);
+            $data['token'] = $user->createToken('my-app-token')->plainTextToken;
 
             return response()->api($data);
 
@@ -42,12 +43,12 @@ class AuthController extends Controller
 
 
 
-    public function student()
+    public function user()
     {
-        $data['student'] = new StudentResource(auth()->user('sanctum'));
+        $data['user'] = new UserResource(auth()->user('sanctum'));
 
         return response()->api($data);
 
-    }// end of student
+    }// end of user
 
 }//end of controller

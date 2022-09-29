@@ -88,7 +88,7 @@ class Articale extends Model
 
     public function favoriteByUsers()
     {
-        return $this->belongsToMany(User::class, 'user_favorite_articale', 'articale_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_favorite_articale');
 
     }// end of favouriteByUsers
 

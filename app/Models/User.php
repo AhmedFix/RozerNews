@@ -56,7 +56,11 @@ class User extends Authenticatable
     }// end of scopeWhenRoleId
 
     //rel
-    
+    public function favoriteArticales()
+    {
+        return $this->belongsToMany(Articale::class, 'user_favorite_articale');
+
+    }// end of favoriteArticales
 
     //fun
     public function hasImage()
