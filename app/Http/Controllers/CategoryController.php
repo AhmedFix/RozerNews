@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $articales = Articale::latest()->get();
+        $articales = Articale::latest()->paginate(10);
         
         return view('backend.categories.create', compact('articales'));
     }

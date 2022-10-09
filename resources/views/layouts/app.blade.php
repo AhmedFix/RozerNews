@@ -42,10 +42,19 @@
             $( "#opennavdropdown" ).on( "click", function() {
                 $( "#navdropdown" ).toggleClass( "hidden" );
             })
-        })
-    </script>
+            // loaded image
+            $( ".image-input" ).change( function() {
+                 if(this.files && this.files[0]){
+                     var reader = new FileReader();
+                     reader.onload = function(e){
+                        $('.image-viewer').attr('src',e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            })  
 
-<script>
+        })
+   
     $(document).ready(function () {
 
         //delete
@@ -116,7 +125,7 @@
     $('.select2').select2({
         'width': '100%',
     });
-
+  
 </script>
 
     @stack('scripts')

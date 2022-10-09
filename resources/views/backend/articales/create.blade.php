@@ -18,6 +18,7 @@
         <div class="table w-full mt-8 bg-white rounded">
             <form action="{{ route('articale.store') }}" method="POST" class="w-full max-w-xl px-6 py-12">
                 @csrf
+
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
@@ -29,7 +30,7 @@
                     $models = ['image', 'video'];
                     @endphp
                     <div class="relative">
-                        <select name="type" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                        <select name="type" class="type-options block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                             <option value="">--Select Type--</option>
                             @foreach ($models as $model)
                                 <option value="{{ $model }}" {{ $model == old('type') ? 'selected' : '' }}>{{ $model }}</option>
@@ -42,6 +43,19 @@
                     @error('type')
                         <p class="text-red-500 text-xs font-normal italic">{{ $message }}</p>
                     @enderror
+                </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                            @lang('books.poster')
+                        </label>
+                    </div>
+                <div class="md:flex md:w-2/3 block text-gray-600 font-bold md:items-center">
+                    <div class="poster-dropzone ">
+                         <img src="{{ asset("images/articales/default.jpg") }}" class="upload-icon image-viewer" alt="" style="display: block; width: 250px; height: 95px;" />
+                        <input name="poster" type="file" class="upload-input image-input"/>
+                    </div>
                 </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -70,20 +84,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Articale Poster Url
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <input name="poster" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" value="{{ old('poster') }}">
-                        @error('poster')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="md:flex md:items-center mb-6">
+                <div class="md:flex md:items-center mb-6 video_form" style="display: none">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                             Articale Video Url
@@ -96,6 +97,7 @@
                         @enderror
                     </div>
                 </div>
+
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
@@ -159,3 +161,17 @@
         
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function() {       
+        $( ".type-options" ).on('change',function(){ 
+            if($(this).val()=="video"){
+                $(".video_form").show();
+            }else{
+                $(".video_form").hide();
+            }
+        });
+    })
+</script>
+@endpush

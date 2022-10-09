@@ -108,8 +108,8 @@
                     <div class="md:w-2/3">
                        <div class="md:flex bg-gray-200 appearance-none border-2 border-gray-200 rounded md:items-center">
                             <div class="dropzone ">
-                                <img src="{{ asset("images/profile/avatar.png") }}" class="upload-icon" alt="" style="display: block; width: 70px; height: 70px;" />
-                                <input name="profile_picture" type="file" class="upload-input"/>
+                                <img src="{{ asset("images/profile/avatar.png") }}" class="upload-icon image-viewer" alt="" style="display: block; width: 78px; height: 78px;" />
+                                <input name="profile_picture" type="file" class="upload-input image-input"/>
                             </div>
                         </div>
                     </div>
@@ -131,8 +131,6 @@
 
 @push('scripts')
 <script>
-    $(function() {       
-        $( "#datepicker-sc" ).datepicker({ dateFormat: 'yy-mm-dd' });
-    })
+   
 </script>
 @endpush

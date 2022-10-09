@@ -7,6 +7,7 @@ use App\Models\Articale;
 use App\Models\Attendance;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\PushNotification;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -36,9 +37,11 @@ class HomeController extends Controller
         $categories = Category::latest()->get();
         $articales = Articale::latest()->get();
         $users = User::latest()->get();
+        $notifications = PushNotification::latest()->get();
+
 
         if ($user->hasRole('admin|super_admin')) {
-            return view('home', compact('categories', 'articales','users'));
+            return view('home', compact('categories', 'articales','users','notifications'));
         } elseif ($user->hasRole('user')) {
             return view('frontend.home', compact('categories', 'articales',));
         } else {

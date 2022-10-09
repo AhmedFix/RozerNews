@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PushNotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 //profile routes
 Route::get('/profile', 'ProfileController@index')->name('profile');
@@ -34,8 +36,12 @@ Route::group(['middleware' => ['auth', 'role:admin|super_admin']], function () {
     Route::post('assign-articale-to-category/{id}', 'CategoryController@storeAssignedArticale')->name('store.category.assign.articale');
 
     Route::resource('categories', 'CategoryController');
+    // Category Controllers
     Route::resource('articale', 'ArticaleController');
+    // User Controllers
     Route::resource('user', 'UserController');
+    // Notification Controllers
+    Route::resource('notification', 'PushNotificationController', ['except' => ['show', 'update','edit']]);
 });
 
 

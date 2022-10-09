@@ -17,7 +17,7 @@ class CreatePushNotificationsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('body');
-            $table->string('img');
+            $table->string('img')->default('notification.png');
             $table->timestamps();
         });
     }

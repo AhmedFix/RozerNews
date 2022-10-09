@@ -106,7 +106,6 @@
 <script>
     $(function() {       
         $( "#datepicker-se" ).datepicker({ dateFormat: 'yy-mm-dd' });
-        $( ".upload-input" ).
     })
 </script>
 @endpush

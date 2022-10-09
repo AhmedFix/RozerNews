@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class NotificationRequest extends FormRequest
 {
     /**
-     * Determine if the category is authorized to make this request.
+     * Determine if the notification is authorized to make this request.
      *
      * @return bool
      */
@@ -24,14 +24,16 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|unique:categories',
+            'title' => 'required|unique:push_notifications',
+            'body' => 'required',
+            'img' => 'sometimes|nullable|image',
         ];
 
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
 
-            $category = $this->route()->parameter('category');
+            $notification = $this->route()->parameter('notification');
 
-            $rules['name'] = 'required|unique:categories,id,' . $category->id;
+            $rules['title'] = 'required|unique:push_notifications,id,' . $notification->id;
 
         }//end of if
 
